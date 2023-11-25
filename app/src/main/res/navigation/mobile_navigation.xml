@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_inicio">
+
+    <fragment
+        android:id="@+id/nav_inicio"
+        android:name="com.example.proyectopelisappcine.ui.users.InicioFragment"
+        android:label="@string/inicio"
+        tools:layout="@layout/fragment_inicio" >
+        <action
+            android:id="@+id/action_nav_inicio_to_nav_registro"
+            app:destination="@id/nav_registro" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_nav_inicio_to_nav_perfil"
+        app:destination="@id/nav_perfil" />
+
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.example.proyectopelisappcine.ui.users.PerfilFragment"
+        android:label="@string/perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_nav_perfil_to_nav_modificacion_perfil"
+            app:destination="@id/nav_modificacion_perfil" />
+        <action
+            android:id="@+id/action_nav_perfil_to_nav_inicio"
+            app:destination="@id/nav_inicio" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_registro"
+        android:name="com.example.proyectopelisappcine.ui.users.RegistroFragment"
+        android:label="@string/registro_usuario"
+        tools:layout="@layout/fragment_registro_usuario" >
+        <action
+            android:id="@+id/action_nav_registro_to_nav_perfil"
+            app:destination="@id/nav_perfil" />
+        <action
+            android:id="@+id/action_nav_registro_to_nav_inicio"
+            app:destination="@id/nav_inicio" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_modificacion_perfil"
+        android:name="com.example.proyectopelisappcine.ui.users.ModificacionPerfilFragment"
+        android:label="@string/modificacion_perfil"
+        tools:layout="@layout/fragment_modificar_perfil" >
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_nav_modificacion_perfil_to_nav_perfil"
+        app:destination="@id/nav_perfil" />
+
+    <fragment
+        android:id="@+id/nav_film_list"
+        android:name="com.example.proyectopelisappcine.ui.films.FilmListFragment"
+        android:label="@string/listado_peliculas"
+        tools:layout="@layout/fragment_film_list" />
+
+    <fragment
+        android:id="@+id/nav_film_list_favorites"
+        android:name="com.example.proyectopelisappcine.ui.users.FavoritosFragment"
+        android:label="@string/listado_peliculas_favoritas"
+        tools:layout="@layout/fragment_film_list_favorites" />
+
+    <fragment
+        android:id="@+id/nav_configuration"
+        android:name="com.example.proyectopelisappcine.ui.settings.SettingsFragment"
+        android:label="@string/configuration"
+        tools:layout="@layout/activity_settings" />
+
+</navigation>

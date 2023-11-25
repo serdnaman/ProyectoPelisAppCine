@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_menu_perfil"
+            android:title="@string/perfil" />
+        <item
+            android:id="@+id/nav_film_list"
+            android:icon="@drawable/ic_menu_peliculas"
+            android:title="@string/listado_peliculas" />
+        <item
+            android:id="@+id/nav_film_list_favorites"
+            android:icon="@drawable/ic_menu_favoritos"
+            android:title="@string/listado_peliculas_favoritas" />
+        <item
+            android:id="@+id/nav_configuration"
+            android:icon="@drawable/ic_menu_configuration"
+            android:title="@string/configuration" />
+    </group>
+</menu>

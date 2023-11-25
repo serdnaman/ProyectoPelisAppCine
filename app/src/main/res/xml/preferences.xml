@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="@string/settings_mode"
+        android:title="@string/settings_change_mode"
+        android:dialogTitle="@string/settings_change_dialog_mode"
+        android:entries="@array/settings_entries_mode"
+        android:entryValues="@array/settings_entryValues_mode"
+        />
+
+    <SwitchPreferenceCompat
+        android:key="notifications"
+        android:title="@string/settings_notifications"
+        android:defaultValue="true"
+        />
+
+    <ListPreference
+        android:key="@string/settings_language"
+        android:title="@string/settings_change_language"
+        android:dialogTitle="@string/settings_change_dialog_language"
+        android:entries="@array/settings_entries_language"
+        android:entryValues="@array/settings_entryValues_language"
+        />
+</PreferenceScreen>

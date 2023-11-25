@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_entries_mode">
+        <item>Luz diurna</item>
+        <item>Luz nocturna</item>
+    </string-array>
+
+    <string-array name="settings_entryValues_mode">
+        <item>Day_Light</item>
+        <item>Night_Light</item>
+    </string-array>
+    
+    <string-array name="settings_entries_language">
+        <item>Español</item>
+        <item>Ingles</item>
+        <item>Frances</item>
+    </string-array>
+
+    <string-array name="settings_entryValues_language">
+        <item>es</item>
+        <item>en</item>
+        <item>fr</item>
+    </string-array>
+</resources>
