@@ -1,6 +1,5 @@
 package com.example.proyectopelisappcine.ui.users;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,7 @@ import com.example.proyectopelisappcine.MainActivity;
 import com.example.proyectopelisappcine.MainViewModel;
 import com.example.proyectopelisappcine.R;
 import com.example.proyectopelisappcine.UserFilms;
+import com.example.proyectopelisappcine.UserManager;
 import com.example.proyectopelisappcine.databinding.FragmentPerfilBinding;
 import com.example.proyectopelisappcine.repository.UserRepository;
 import com.example.proyectopelisappcine.roomdb.FilmDatabase;
@@ -27,7 +27,6 @@ public class PerfilFragment extends Fragment {
     private Button botonEditar;
     private Button botonCerrarSesion;
     private Button botonEliminarCuenta;
-    private SharedPreferences preferences;
     FilmDatabase filmDatabase;
     UserRepository userRepository;
     private MainViewModel mainViewModel;
@@ -36,8 +35,6 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPerfilBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
-
-        preferences = requireActivity().getPreferences(requireContext().MODE_PRIVATE);
 
         filmDatabase = FilmDatabase.getInstance(getContext());
         userRepository = UserRepository.getInstance(filmDatabase.userDAO());
@@ -61,6 +58,8 @@ public class PerfilFragment extends Fragment {
                     valueUsername.setText(user.getUsername());
                     valuePassword.setText(user.getPassword());
                     valueEmail.setText(user.getEmail());
+                    //Se actualiza el usuario actual de la aplicacion
+                    UserManager.getInstance().setUsuarioActual(user);
                 }
             });
         }
@@ -75,12 +74,6 @@ public class PerfilFragment extends Fragment {
         botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //CerrarSesionUsuario(valueUsername.getText().toString());
-                //((MainActivity) getActivity()).NavegarDePerfilAInicio();
-
-                //mainViewModel.CerrarSesion();
-                //((MainActivity) getActivity()).NavegarDePerfilAInicio();
-
                 CerrarSesionUsuario();
             }
         });
@@ -97,10 +90,6 @@ public class PerfilFragment extends Fragment {
     }
 
     public void CerrarSesionUsuario() {
-        //UserFilms userFilms = UserFilms.getInstance();
-        //userFilms.userfilmsfavorites.clear();
-        //mainViewModel.CerrarSesion(username);
-
         mainViewModel.CerrarSesion();
         ((MainActivity) getActivity()).NavegarDePerfilAInicio();
     }

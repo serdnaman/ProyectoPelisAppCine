@@ -1,5 +1,8 @@
 package com.example.proyectopelisappcine.repository;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+
 import com.example.proyectopelisappcine.AppExecutors;
 import com.example.proyectopelisappcine.model.Favorite;
 import com.example.proyectopelisappcine.roomdb.FavoriteDAO;
@@ -39,5 +42,9 @@ public class FavoriteRepository {
                 favoriteDAO.DeleteFavorites(favorite);
             }
         });
+    }
+
+    public boolean isFilmInFavorites(int idfilm, String username) {
+        return favoriteDAO.isFilmInFavorites(idfilm, username);
     }
 }

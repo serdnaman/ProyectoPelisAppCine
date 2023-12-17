@@ -12,14 +12,12 @@ import com.example.proyectopelisappcine.model.Film;
 import com.example.proyectopelisappcine.roomdb.FilmDatabase;
 
 public class FilmDetailActivity extends AppCompatActivity implements FilmDetailFragment.FilmListener {
-    private SharedPreferences preferences;
     private Film film;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_film_detail);
-        preferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         //Se obtiene la pelicula de la que se quiere mostrar informacion
         film = (Film) getIntent().getSerializableExtra("Pelicula");
         //Se recuperan los datos de la pelicula

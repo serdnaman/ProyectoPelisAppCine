@@ -1,6 +1,5 @@
 package com.example.proyectopelisappcine.ui.users;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +22,6 @@ public class ModificacionPerfilFragment extends Fragment {
     private EditText editarPassword;
     private EditText editarEmail;
     private Button editar;
-    private SharedPreferences preferences;
     FilmDatabase filmDatabase;
     UserRepository userRepository;
     private MainViewModel mainViewModel;
@@ -32,8 +30,6 @@ public class ModificacionPerfilFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentModificarPerfilBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
-
-        preferences = getActivity().getPreferences(getContext().MODE_PRIVATE);
 
         filmDatabase = FilmDatabase.getInstance(getContext());
         userRepository = UserRepository.getInstance(filmDatabase.userDAO());

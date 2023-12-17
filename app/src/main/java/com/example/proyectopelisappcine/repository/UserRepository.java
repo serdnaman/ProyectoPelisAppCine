@@ -16,7 +16,6 @@ public class UserRepository {
     private final UserDAO userDAO;
     private final MutableLiveData<String> userFilterLiveData = new MutableLiveData<>();
     private MutableLiveData<List<User>> users;
-    private String usuarioActual;
 
     public UserRepository(UserDAO userDAO) {
         this.userDAO = userDAO;
@@ -38,7 +37,11 @@ public class UserRepository {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
-                userDAO.InsertUser(user);
+                try {
+                    userDAO.InsertUser(user);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -63,8 +66,6 @@ public class UserRepository {
 
     public LiveData<User> getUser(String username) {
         return userDAO.getUserLiveData(username);
-        //return Transformations.switchMap(userFilterLiveData, userDAO::getUserLiveData);
-
     }
 
     public void DeleteUserByUsername(String username) {
@@ -97,24 +98,6 @@ public class UserRepository {
     public LiveData<List<User>> getUsers() {
         return userDAO.getUsersLiveData();
     }
-
-    public String getUsuarioActual() {
-        return usuarioActual;
-    }
-
-    public void setUsuarioActual(String usuarioActual) {
-        this.usuarioActual = usuarioActual;
-    }
-
-    /*public String getUsuarioIniciado() {EL USUARIO YA NO SE guarda, hay un problema con shared preferences, ver como arreglar esto
-        if (sharedPreferences != null) {
-            return sharedPreferences.getString("Usuario","");
-        }
-        else {
-            return "";
-        }
-        return "";
-    }*/
 
     public void setUsername(String username) {
         userFilterLiveData.setValue(username);

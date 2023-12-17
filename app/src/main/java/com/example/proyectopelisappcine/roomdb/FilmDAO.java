@@ -14,7 +14,6 @@ import java.util.List;
 
 @Dao
 public interface FilmDAO {
-    //@Insert
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertFilm(Film film);
 
@@ -54,6 +53,9 @@ public interface FilmDAO {
     @Query("SELECT p.title, p.releaseDate FROM Film p JOIN Favorite f ON p.idfilm = f.idfilm WHERE f.usernamefilm = :username")
     LiveData<List<Film>> getAllFavoritesFilmsForUserLiveData(String username);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertListFilms(List<Film> filmList);
+
+    @Query("DELETE FROM Film")
+    void deleteAllFilms();
 }

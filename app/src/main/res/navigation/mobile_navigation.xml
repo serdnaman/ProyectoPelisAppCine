@@ -49,9 +49,7 @@
         android:id="@+id/nav_modificacion_perfil"
         android:name="com.example.proyectopelisappcine.ui.users.ModificacionPerfilFragment"
         android:label="@string/modificacion_perfil"
-        tools:layout="@layout/fragment_modificar_perfil" >
-
-    </fragment>
+        tools:layout="@layout/fragment_modificar_perfil" />
 
     <action
         android:id="@+id/action_nav_modificacion_perfil_to_nav_perfil"

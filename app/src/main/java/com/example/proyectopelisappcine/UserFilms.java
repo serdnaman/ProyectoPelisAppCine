@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 public class UserFilms {
     private static UserFilms instance;
-
     public HashMap<Integer, Film> userfilmsfavorites = new HashMap<>();
 
     public static UserFilms getInstance() {

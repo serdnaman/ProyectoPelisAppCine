@@ -1,6 +1,5 @@
 package com.example.proyectopelisappcine.ui.users;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,7 @@ import com.example.proyectopelisappcine.MainViewModel;
 import com.example.proyectopelisappcine.R;
 import com.example.proyectopelisappcine.UserFilms;
 import com.example.proyectopelisappcine.adapters.FilmsAdapter;
+import com.example.proyectopelisappcine.api.FilmsNetworkDataSource;
 import com.example.proyectopelisappcine.model.Film;
 import com.example.proyectopelisappcine.repository.FilmRepository;
 import com.example.proyectopelisappcine.roomdb.FilmDatabase;
@@ -23,13 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FavoritosFragment extends Fragment {
-    private List<Integer> id_films;
     private FilmsAdapter filmsAdapter;
-    private SharedPreferences preferences;
     private List<Film> filmList;
     FilmDatabase filmDatabase;
     FilmRepository filmRepository;
     private MainViewModel mainViewModel;
+    FilmsNetworkDataSource filmsNetworkDataSource;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,10 @@ public class FavoritosFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_film_list_favorites,container,false);
 
         filmDatabase = FilmDatabase.getInstance(getContext());
-        filmRepository = FilmRepository.getInstance(filmDatabase.filmDAO());
+
+        filmsNetworkDataSource = FilmsNetworkDataSource.getInstance();
+
+        filmRepository = FilmRepository.getInstance(filmDatabase.filmDAO(), filmsNetworkDataSource);
 
         // Obtén el MainViewModel de la MainActivity
         if (getActivity() != null && getActivity() instanceof MainActivity) {

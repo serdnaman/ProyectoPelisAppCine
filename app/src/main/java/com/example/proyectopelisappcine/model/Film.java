@@ -13,7 +13,6 @@ import java.util.List;
 
 @Entity(tableName = "Film")
 public class Film implements Serializable {
-
     @SerializedName("adult")
     @Expose
     private Boolean adult;

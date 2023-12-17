@@ -1,7 +1,5 @@
 package com.example.proyectopelisappcine.ui.users;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +16,8 @@ import com.example.proyectopelisappcine.MainActivity;
 import com.example.proyectopelisappcine.MainViewModel;
 import com.example.proyectopelisappcine.R;
 import com.example.proyectopelisappcine.databinding.FragmentInicioBinding;
-import com.example.proyectopelisappcine.model.User;
 import com.example.proyectopelisappcine.repository.UserRepository;
 import com.example.proyectopelisappcine.roomdb.FilmDatabase;
-
-import java.util.HashMap;
 
 public class InicioFragment extends Fragment {
     private EditText user;
@@ -30,11 +25,6 @@ public class InicioFragment extends Fragment {
     private Button botonInicio;
     private Button botonRegistrar;
     private FragmentInicioBinding binding;
-    private SharedPreferences preferences;
-    private HashMap<String, User> usuariosBaseDeDatos;
-    private HashMap<String, User> usuariospornombresBaseDeDatos;
-    private HashMap<String, User> usuariosporncontrasenasBaseDeDatos;
-    private HashMap<String, User> usuariosporcorreosBaseDeDatos;
     FilmDatabase filmDatabase;
     UserRepository userRepository;
     private MainViewModel mainViewModel;
@@ -53,6 +43,7 @@ public class InicioFragment extends Fragment {
             navController = ((MainActivity) getActivity()).getNavController();
         }
 
+        //se hace con el objetivo de que el usuario creado se cargue de inmediato en los campos y que no se tengan que escribir
         if (mainViewModel.getUser() != null) {
             mainViewModel.getUser().observe(getViewLifecycleOwner(), usuario -> {
                 if (usuario != null) {
@@ -70,8 +61,6 @@ public class InicioFragment extends Fragment {
         binding = FragmentInicioBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
 
-        preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-
         filmDatabase = FilmDatabase.getInstance(getContext());
         userRepository = UserRepository.getInstance(filmDatabase.userDAO());
 
@@ -79,10 +68,6 @@ public class InicioFragment extends Fragment {
         password = root.findViewById(R.id.insertPassword);
         botonInicio = root.findViewById(R.id.botonInicio);
         botonRegistrar = root.findViewById(R.id.botonRegistrar);
-
-        usuariospornombresBaseDeDatos = new HashMap<>();
-        usuariosporncontrasenasBaseDeDatos = new HashMap<>();
-        usuariosporcorreosBaseDeDatos = new HashMap<>();
 
         botonInicio.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -17,6 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.proyectopelisappcine.adapters.FilmAdapter;
 import com.example.proyectopelisappcine.adapters.FilmsAdapter;
+import com.example.proyectopelisappcine.api.FilmsNetworkDataSource;
 import com.example.proyectopelisappcine.databinding.ActivityMainBinding;
 import com.example.proyectopelisappcine.model.Favorite;
 import com.example.proyectopelisappcine.model.Film;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements FilmAdapter.OnFil
     FilmDatabase filmDatabase;
     private MainViewModel mainViewModel;
     private NavController navController;
+    FilmsNetworkDataSource filmsNetworkDataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +48,9 @@ public class MainActivity extends AppCompatActivity implements FilmAdapter.OnFil
         preferences = getPreferences(Context.MODE_PRIVATE);
 
         filmDatabase = FilmDatabase.getInstance(MainActivity.this);
-
+        filmsNetworkDataSource = FilmsNetworkDataSource.getInstance();
         UserRepository userRepository = new UserRepository(filmDatabase.userDAO());
-        FilmRepository filmRepository = new FilmRepository(filmDatabase.filmDAO());
+        FilmRepository filmRepository = new FilmRepository(filmDatabase.filmDAO(), filmsNetworkDataSource);
         FavoriteRepository favoriteRepository = new FavoriteRepository(filmDatabase.favoriteDAO());
 
         //Creación de una instancia de MainViewModel pasando los repositorios
@@ -89,17 +91,6 @@ public class MainActivity extends AppCompatActivity implements FilmAdapter.OnFil
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (R.id.action_settings == id) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 
     @Override
     public void onFilmClick(Film item) {

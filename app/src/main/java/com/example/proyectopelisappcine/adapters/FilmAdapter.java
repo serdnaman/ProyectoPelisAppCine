@@ -20,7 +20,7 @@ import java.util.List;
 public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmsAdapterViewHolder>{
     private List<Film> filmDataset;
     private final OnFilmClickListener filmListener;
-    //Sirve para pasarle al adapterel layout sobre el que se debe actuar
+    //Sirve para pasarle al adapter el layout sobre el que se debe actuar
     private final int itemlist;
 
     public interface OnFilmClickListener {

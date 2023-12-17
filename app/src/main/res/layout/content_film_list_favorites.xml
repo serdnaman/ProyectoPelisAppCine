@@ -51,7 +51,6 @@
             app:layout_constraintHorizontal_bias="0.266"
             app:layout_constraintStart_toEndOf="@+id/poster" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

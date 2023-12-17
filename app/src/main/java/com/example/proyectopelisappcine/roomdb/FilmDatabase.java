@@ -13,7 +13,6 @@ import com.example.proyectopelisappcine.model.User;
 @Database(entities = {User.class, Film.class, Favorite.class}, version = 1)
 public abstract class FilmDatabase extends RoomDatabase {
     public static volatile FilmDatabase instance;
-
     private static User usuario = new User();
 
     public static FilmDatabase getInstance(Context context) {
@@ -36,6 +35,8 @@ public abstract class FilmDatabase extends RoomDatabase {
     }
 
     public abstract UserDAO userDAO();
+    
     public abstract FilmDAO filmDAO();
+
     public abstract FavoriteDAO favoriteDAO();
 }

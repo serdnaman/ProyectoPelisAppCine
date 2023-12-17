@@ -5,9 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
-@Entity(tableName = "Favorite", primaryKeys = {"idfilm", "usernamefilm"},
-        foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "username", childColumns = "usernamefilm", onDelete = ForeignKey.CASCADE),
-                @ForeignKey(entity = Film.class, parentColumns = "idfilm", childColumns = "idfilm", onDelete = ForeignKey.CASCADE)})
+@Entity(tableName = "Favorite", primaryKeys = {"idfilm", "usernamefilm"}, foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "username", childColumns = "usernamefilm", onDelete = ForeignKey.CASCADE), @ForeignKey(entity = Film.class, parentColumns = "idfilm", childColumns = "idfilm", onDelete = ForeignKey.CASCADE)})
 public class Favorite {
     @ColumnInfo(name = "idfilm")
     @NonNull
