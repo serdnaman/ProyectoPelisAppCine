@@ -15,13 +15,4 @@ public interface FavoriteDAO {
 
     @Delete
     void DeleteFavorites(Favorite favorite);
-
-    @Query("SELECT * FROM Favorite WHERE idfilm = :idfilm AND usernamefilm = :usernamefilm")
-    Favorite getFilmFromUser(int idfilm, String usernamefilm);
-
-    @Query("SELECT * FROM Favorite WHERE idfilm = :idfilm AND usernamefilm = :usernamefilm")
-    LiveData<Favorite> getFilmFromUserLiveData(int idfilm, String usernamefilm);
-
-    @Query("SELECT EXISTS (SELECT 1 FROM Favorite WHERE idfilm = :idfilm AND usernamefilm = :usernamefilm LIMIT 1)")
-    boolean isFilmInFavorites(int idfilm, String usernamefilm);
 }
