@@ -25,7 +25,7 @@ public class MainViewModel extends ViewModel {
         this.userRepository = userRepository;
         this.filmRepository = filmRepository;
         this.favoriteRepository = favoriteRepository;
-        user = userRepository.getUser("username");// Reemplaza con el nombre de usuario deseado o pásalo como parámetro según tu lógica
+        user = userRepository.getUser("username");
         film = filmRepository.getFilm("Titulo de pelicula", "Fecha de pelicula");
         mStateAuthentication = new MutableLiveData<>();
         mStateAuthentication.setValue(false);
